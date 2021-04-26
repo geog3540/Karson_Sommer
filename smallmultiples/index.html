@@ -37,9 +37,9 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="../shortbio.html">About</a></li>
-							<li><a href="../files/koylu_cv_23.pdf">Resume</a></li>
+							<li><a href="../files/resume.pdf">Resume</a></li>
 							<li class="divider"></li>
-							<li><a href="caglar-koylu@uiowa.edu">Contact</a></li>
+							<li><a href="karson-sommer@uiowa.edu">Contact</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -78,16 +78,16 @@
 						<!--<button id='linearButton' class="btn btn-sm">Unclassed</button>-->
 					</span>
 				</div>
-			</div>
+			</div>		
 			<br />
 			<div class="row">
 				<div class="col-sm-6">
-					<span><p><h3 class='mapTitle'>Per Capita Income</h3>Average income (USD) per person</p></span>
+					<span><p><h3 class='mapTitle'>Tests Per Capita</h3>Number of COVID-19 screenings conducted per person</p></span>
 					<div id="divMap1"></div>
 					<div id="divHist1"></div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Tests Per Capita</h3><p>Number of COVID-19 screenings conducted per person</p>
+					<h3 class='mapTitle'>Infectivity Rate</h3><p>Percent of population which have tested posotive for COVID-19</p>
 					<div id="divMap2"></div>
 					<div id="divHist2"></div>
 				</div>
@@ -95,12 +95,12 @@
 
 			<div class="row">
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Infectivity Rate</h3><p>Percent of population which have tested posotive for COVID-19</p>
+					<h3 class='mapTitle'>Mortality Rate</h3><p>COVID-19 deaths per 1000 residents</p>
 					<div id="divMap3"></div>
 					<div id="divHist3"></div>
 				</div>
 				<div class="col-sm-6">
-					<h3 class='mapTitle'>Mortality Rate</h3><p>Number of deaths attributed to covid-19 per 1000 persons</p>
+					<h3 class='mapTitle'>Posotivity Rate</h3><p>Number of all posotive tests as a portion of total tests</p>
 					<div id="divMap4"></div>
 					<div id="divHist4"></div>
 				</div>
@@ -116,7 +116,7 @@
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// TODO: Change the variables below to customize the small multiples interface for your data
-	var polygonJSONFile = 'data/illinois_covid.geojson'
+	var polygonJSONFile = 'data/illinois_covid1.geojson'
 	// change the projection if needed *d3.geoAlbers()*
 	var projection = d3.geoAlbers();
 	var widthheightRatio = 1;
@@ -124,10 +124,10 @@
 	// 0 is the start, whereas 1 i the end of each panel.
 	// If you want to put the legend on the left, then use 0.
 	// legendY = 0.5 puts the legend in the middle of the Y Axis.
-	var legendX = 0.84, legendY = 0.5
+	var legendX = 0.1, legendY = 0.7
 
 	// id attribute and the name attribute to be used in the tooltip
-	var idAttribute = 'COUNTYFP', nameAttribute = 'NAME';
+	var idAttribute = 'COUNTYFP', nameAttribute = 'County';
 
 	// Find the abbreviations of color names from https://colorbrewer2.org/
 	var colors =  colorbrewer.YlOrRd;
@@ -139,10 +139,10 @@
 	// att1format: enter the d3.format string to display the variables in the format you like
 	// Check this link on how to specify the desired format:
 	// https://observablehq.com/@d3/d3-format
-	var att1 = 'incomepercapita', att1alias = 'income per person', att1format = '$,.0f',
-	att2 = 'testingpercapita', att2alias =  'tests per person', att2format = '.1f',
-	att3 = 'infectivitypercent', att3alias = '5 population infected', att3format = '.1%',
-	att4 = 'mortalityper1000', att4alias = 'covid-19 deaths per 1000', att4format = '.1f';
+	att1 = 'testingPerCapita', att1alias =  '# tests per person', att1format = '.1f',
+	att2 = 'infectivityRate', att2alias = '% of total population infected', att2format = '.1%',
+	att3 = 'mortalityPer1000', att3alias = 'Covid-19 deaths per 1000 residents', att3format = '.1f'
+	att4 = 'posotiveRate', att4alias = 'Percent of posotive test compared to all tests', att4format = '.1%';
 
   // enter below all variables that should be normalized. If you would like to multiple the variables
 	// with a constant value enter them in multiplyBy array. If there is no need for multiplication,
