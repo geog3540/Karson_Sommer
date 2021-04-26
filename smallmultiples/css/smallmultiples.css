@@ -1,0 +1,74 @@
+body {
+  font-family: 'Raleway';
+}
+.container {
+  padding: 25px;
+}
+.content {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  background: #f3f3f3;
+  border: thin black solid;
+}
+.mapButtons {
+  vertical-align: middle;
+}
+.mapTitle h3 {
+  display: inline;
+}
+.bar {
+  stroke: #dadada;
+  stroke-width: 1px;
+}
+.polygons {
+  fill: #e6e6e6;
+  stroke: #dadada;
+  stroke-width: 1px;
+  opacity: 0.85;
+}
+.axes {
+  font-family: 'sans-serif';
+}
+.tooltipD3 {
+  position: absolute;
+  z-index: 10;
+}
+.tooltipD3 p {
+  background-color: #cccccc;
+  border: thin solid black;
+  padding: 2px;
+  margin: 2px;
+}
+.legendQuant {
+  font-weight: normal;
+}
+
+#confirm {
+  display: none;
+  background-color: #F3F5F6;
+  color: #000000;
+  border: 1px solid #aaa;
+  position: fixed;
+  width: 300px;
+  height: 180px;
+  left: 40%;
+  top: 40%;
+  box-sizing: border-box;
+  text-align: center;
+}
+#confirm button {
+  background-color: #FFFFFF;
+  display: inline-block;
+  border-radius: 12px;
+  border: 4px solid #aaa;
+  padding: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  width: 60px;
+  cursor: pointer;
+}
+#confirm .message {
+  text-align: middle;
+  padding: 5px
+}
