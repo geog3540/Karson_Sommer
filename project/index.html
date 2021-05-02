@@ -9,7 +9,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<!-- import google 'Raleway' font -->
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,900" rel="stylesheet">
-	<link rel="stylesheet" href="css/smallmultiples.css">
+	<link rel="stylesheet" href="./css/smallmultiples.css">
 
 	<!-- import JQuery and Bootstrap -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
@@ -59,11 +59,12 @@
 			</div>
 			<hr />
 			<div class="row">
-				<div class="col-sm-4">
+				<!--<div class="col-sm-4">-->
 					<p>Data from <a href="https://data.iowadot.gov/datasets/road-network-2">Iowa Department of Transportation Road Access Management System (RAMS)</a>, maps by Karson Sommer.</p>
-					<p>Data extracted from road network using SQL queries in Azure Databricks. <a href="./aGeography.html">(Query)</a></p>
+					<p>The roads first have county information joined in QGIS and the 4 name fields reduced to 1 name field. Then, the summary statistics are extracted from road network using SQL queries in Azure Databricks. <a href="./aGeography.html">(Query)</a> A related analysis instead focusing on crash statistics can be found here: <a href="./files/road_safety_analysis.pdf">Presentation</a></p>
+					<p>A summary of which suffixes are the most common in each county can be found here: <a href="./files/summary_stats.pdf">Summary Map</a></p>
 					<p>These maps display the proportion of roads in Iowa broken down by county. Change the suffix to look for a specific type of road. Selecting length looks at the percent of total miles in each county with the specified suffix. Selecting vehicle miles looks at the percent of total miles driven by the specified suffix. Disable the load screen to more easily toggle between length and vehicle miles.</p>
-				</div>
+				<!--</div>-->
 			</div>
 			<div class="row">
 				<div class='col-sm-8 mapButtons'>
@@ -107,12 +108,11 @@
 			<div id="divHist1"></div>
 		</div>
 	</div>
-	<div id="confirm">
-		<div class="message">This is a warning message.</div><br>
-		<button class="yes">OK</button>
-	</div>
 
-
+<div id="confirm">
+	<div class="message">asdfadsf</div><br>
+	<button class="yes">OK</button>
+</div>
 
 </body>
 <script src="./myScript"></script>

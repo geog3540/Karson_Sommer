@@ -3,7 +3,6 @@
 var polygonJSONFile = 'data/RoadInfo.geojson'
 // change the projection if needed *d3.geoAlbers()*
 var projection = d3.geoAlbers();
-var widthheightRatio = 1;
 // Relative placement of legend that ranges between 0 and 1.
 // 0 is the start, whereas 1 i the end of each panel.
 // If you want to put the legend on the left, then use 0.
@@ -14,7 +13,7 @@ var legendX = 0.1, legendY = 0.7
 var idAttribute = 'FIPS', nameAttribute = 'County';
 
 // Find the abbreviations of color names from https://colorbrewer2.org/
-var colors =  colorbrewer.YlOrRd;
+var colors =  colorbrewer.RdPu;
 
 // Chart/map attributes (variables) and formats based on the divs defined above
 // For attribute 1 (the same for all others), see the description of the parameters below.
@@ -55,8 +54,8 @@ var numClasses = 5;
 var color_scale = colors[numClasses];
 
 // Height, width, margins
-//var chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
-var chartWidth=500;
+var widthheightRatio = 0.4;
+var chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
 var chartHeight = chartWidth * widthheightRatio;
 var margin = {top: 10, right: 20, bottom: 10, left:20};
 var width = chartWidth - margin.right - margin.left;
@@ -402,8 +401,8 @@ function mousemoveFunc(polygon) {
 
         var tip = d.map + '-tooltip';
         d3.select(tip)
-        .style("top", (polygonOnMap[1] + 35) + "px" )
-        .style("left", (polygonOnMap[0] + 10) + "px");
+        .style("top", (polygonOnMap[1] + 400) + "px" )
+        .style("left", (polygonOnMap[0] + 150) + "px");
     });
 }
 
