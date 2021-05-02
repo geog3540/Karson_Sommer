@@ -61,16 +61,15 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<p>Data from <a href="https://data.iowadot.gov/datasets/road-network-2">Iowa Department of Transportation Road Access Management System (RAMS)</a>, maps by Karson Sommer.</p>
+					<p>Data extracted from road network using SQL queries in Azure Databricks. <a href="/aGeography.html">(Query)</a></p>
 				</div>
 				<div class='col-sm-8 mapButtons'>
 					<span class="pull-right">
 						<b>Suffix:  </b>
 						<select id="classDropdown">
-							<option value="SUMMARY">SUMMARY</option>
 							<option value="Alley">Alley</option>
-							<option value="Avenue" selected>Avenue</option>
+							<option value="Avenue">Avenue</option>
 							<option value="Boulevard">Boulevard</option>
-							<option value="Chase">Chase</option>
 							<option value="Circle">Circle</option>
 							<option value="County Road">County Road</option>
 							<option value="Court">Court</option>
@@ -83,11 +82,9 @@
 							<option value="OTHER">OTHER</option>
 							<option value="Parkway">Parkway</option>
 							<option value="Place">Place</option>
-							<option value="Pointe">Pointe</option>
 							<option value="Ridge">Ridge</option>
 							<option value="Road">Road</option>
-							<option value="Run">Run</option>
-							<option value="Street">Street</option>
+							<option value="Street" selected>Street</option>
 							<option value="Terrace">Terrace</option>
 							<option value="Trail">Trail</option>
 							<option value="Way">Way</option>

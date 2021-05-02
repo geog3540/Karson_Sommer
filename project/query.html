@@ -1,0 +1,133 @@
+<!-- HTML Codes by Quackit.com -->
+<!DOCTYPE html>
+<title>SQL Query</title>
+<style>
+div.container {
+background-color: #ffffff;
+}
+div.container p {
+font-family: Arial;
+font-size: 14px;
+font-style: normal;
+font-weight: normal;
+text-decoration: none;
+text-transform: none;
+color: #000000;
+background-color: #ffffff;
+}
+</style>
+
+<div class="container">
+    <p>USE karssommer;</p>
+    <p></p>
+    <p>SELECT</p>
+    <p>  countyFP,</p>
+    <p>  SUM(length) AS length,</p>
+    <p>  SUM(length*aadt) AS vehicleMiles,</p>
+    <p>  CASE </p>
+    <p>    WHEN name LIKE '%STREET%' THEN 'Street'</p>
+    <p>    WHEN name LIKE '%AVENUE%' THEN 'Avenue'</p>
+    <p>    WHEN name LIKE '%COURT%' THEN 'Court'</p>
+    <p>    WHEN name LIKE '%ROAD%' THEN 'Road'</p>
+    <p>    WHEN name LIKE '%CIRCLE%' THEN 'Circle'</p>
+    <p>    WHEN name LIKE '%ALLEY%' THEN 'Alley'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%LANE%' THEN 'Lane'</p>
+    <p>    WHEN name LIKE '%TERRACE%' THEN 'Terrace'</p>
+    <p>    WHEN name LIKE '%LOOP%' THEN 'Loop'</p>
+    <p>    WHEN name LIKE '%TRAIL%' THEN 'Trail'</p>
+    <p>    WHEN name LIKE '%DRIVE%' THEN 'Drive'</p>
+    <p>    WHEN name LIKE '%PLACE%' THEN 'Place'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%PARKWAY%' THEN 'Parkway'</p>
+    <p>    WHEN name LIKE '%RIDGE%' THEN 'Ridge'</p>
+    <p>    WHEN name LIKE '%WAY%' THEN 'Way'</p>
+    <p>    WHEN name LIKE '%POINTE%' OR name LIKE '%POINT%' THEN 'Pointe'</p>
+    <p>    WHEN name LIKE '%RUN%' THEN 'Run'</p>
+    <p>    WHEN name LIKE '%CHASE%' THEN 'Chase'</p>
+    <p>    WHEN name LIKE '%IOWA%' OR name RLIKE 'IA [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%BUSINESS%' OR name RLIKE 'US [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%TURNPIKE%' OR name RLIKE 'I [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name RLIKE '[A-Z][0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name RLIKE '[A-Z] [0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name LIKE 'NULL' OR name IS NULL OR length(name)=0 THEN 'NULL'</p>
+    <p>    WHEN name NOT LIKE '% %' THEN 'MALFORMED'</p>
+    <p>    ELSE 'OTHER'</p>
+    <p>  END AS suffix</p>
+    <p>  </p>
+    <p>FROM (</p>
+    <p>  SELECT </p>
+    <p>    aadt,</p>
+    <p>    length * 0.00062137 AS length,</p>
+    <p>    countyfp,</p>
+    <p>    SUBSTR(name, CHARINDEX(',', name)+2, CHARINDEX(',', SUBSTR(name, CHARINDEX(',', name)+2, 112))-1) AS name</p>
+    <p>  FROM geog</p>
+    <p>)</p>
+    <p></p>
+    <p>WHERE  </p>
+    <p>  name NOT LIKE '%PROPOSED%'</p>
+    <p>GROUP BY</p>
+    <p>  countyfp,</p>
+    <p>  CASE </p>
+    <p>    WHEN name LIKE '%STREET%' THEN 'Street'</p>
+    <p>    WHEN name LIKE '%AVENUE%' THEN 'Avenue'</p>
+    <p>    WHEN name LIKE '%COURT%' THEN 'Court'</p>
+    <p>    WHEN name LIKE '%ROAD%' THEN 'Road'</p>
+    <p>    WHEN name LIKE '%CIRCLE%' THEN 'Circle'</p>
+    <p>    WHEN name LIKE '%ALLEY%' THEN 'Alley'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%LANE%' THEN 'Lane'</p>
+    <p>    WHEN name LIKE '%TERRACE%' THEN 'Terrace'</p>
+    <p>    WHEN name LIKE '%LOOP%' THEN 'Loop'</p>
+    <p>    WHEN name LIKE '%TRAIL%' THEN 'Trail'</p>
+    <p>    WHEN name LIKE '%DRIVE%' THEN 'Drive'</p>
+    <p>    WHEN name LIKE '%PLACE%' THEN 'Place'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%PARKWAY%' THEN 'Parkway'</p>
+    <p>    WHEN name LIKE '%RIDGE%' THEN 'Ridge'</p>
+    <p>    WHEN name LIKE '%WAY%' THEN 'Way'</p>
+    <p>    WHEN name LIKE '%POINTE%' OR name LIKE '%POINT%' THEN 'Pointe'</p>
+    <p>    WHEN name LIKE '%RUN%' THEN 'Run'</p>
+    <p>    WHEN name LIKE '%CHASE%' THEN 'Chase'</p>
+    <p>    WHEN name LIKE '%IOWA%' OR name RLIKE 'IA [0-9]+' THEN 'Highway' --RLIKE 'US [0-9]+' OR name RLIKE 'IA [0-9]+' OR RLIKE 'I [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%BUSINESS%' OR name RLIKE 'US [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%TURNPIKE%' OR name RLIKE 'I [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name RLIKE '[A-Z][0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name RLIKE '[A-Z] [0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name LIKE 'NULL' OR name IS NULL OR length(name)=0 THEN 'NULL'</p>
+    <p>    WHEN name NOT LIKE '% %' THEN 'MALFORMED'</p>
+    <p>    ELSE 'OTHER'</p>
+    <p>  END</p>
+    <p>  order by</p>
+    <p>  CASE </p>
+    <p>    WHEN name LIKE '%STREET%' THEN 'Street'</p>
+    <p>    WHEN name LIKE '%AVENUE%' THEN 'Avenue'</p>
+    <p>    WHEN name LIKE '%COURT%' THEN 'Court'</p>
+    <p>    WHEN name LIKE '%ROAD%' THEN 'Road'</p>
+    <p>    WHEN name LIKE '%CIRCLE%' THEN 'Circle'</p>
+    <p>    WHEN name LIKE '%ALLEY%' THEN 'Alley'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%LANE%' THEN 'Lane'</p>
+    <p>    WHEN name LIKE '%TERRACE%' THEN 'Terrace'</p>
+    <p>    WHEN name LIKE '%LOOP%' THEN 'Loop'</p>
+    <p>    WHEN name LIKE '%TRAIL%' THEN 'Trail'</p>
+    <p>    WHEN name LIKE '%DRIVE%' THEN 'Drive'</p>
+    <p>    WHEN name LIKE '%PLACE%' THEN 'Place'</p>
+    <p>    WHEN name LIKE '%BOULEVARD%' THEN 'Boulevard'</p>
+    <p>    WHEN name LIKE '%PARKWAY%' THEN 'Parkway'</p>
+    <p>    WHEN name LIKE '%RIDGE%' THEN 'Ridge'</p>
+    <p>    WHEN name LIKE '%WAY%' THEN 'Way'</p>
+    <p>    WHEN name LIKE '%POINTE%' OR name LIKE '%POINT%' THEN 'Pointe'</p>
+    <p>    WHEN name LIKE '%RUN%' THEN 'Run'</p>
+    <p>    WHEN name LIKE '%CHASE%' THEN 'Chase'</p>
+    <p>    WHEN name LIKE '%IOWA%' OR name RLIKE 'IA [0-9]+' THEN 'Highway' --RLIKE 'US [0-9]+' OR name RLIKE 'IA [0-9]+' OR RLIKE 'I [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%BUSINESS%' OR name RLIKE 'US [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name LIKE '%TURNPIKE%' OR name RLIKE 'I [0-9]+' THEN 'Highway'</p>
+    <p>    WHEN name RLIKE '[A-Z][0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name RLIKE '[A-Z] [0-9]+' THEN 'County Road'</p>
+    <p>    WHEN name LIKE 'NULL' OR name IS NULL OR length(name)=0 THEN 'NULL'</p>
+    <p>    WHEN name NOT LIKE '% %' THEN 'MALFORMED'</p>
+    <p>    ELSE 'OTHER'</p>
+    <p>  END</p>
+    <p>;</p>
+</div>
