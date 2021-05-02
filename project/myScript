@@ -49,15 +49,15 @@ var att1format = '.1%';
 ///////////////////////////////////////////
 
 //Get the selected name of the dropdown
-var suffix = d3.select('#classDropdown').node();
+var suffix = d3.select('#classDropdown').node().value;
 
 var numClasses = 5;
 var color_scale = colors[numClasses];
 console.log(color_scale)
 
 // Height, width, margins
-//var chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
-var chartWidth=500;
+var chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
+//var chartWidth=500;
 var chartHeight = chartWidth * widthheightRatio;
 var margin = {top: 10, right: 20, bottom: 10, left:20};
 var width = chartWidth - margin.right - margin.left;
@@ -352,6 +352,8 @@ function setScales(data) {
     //grab the number of classes from the dropdown list
     //var numClasses = d3.select('#classDropdown').node().value;
     color_scale = colors[numClasses];
+    console.log(color_scale)
+    console.log(current_scale)
     current_scale.range(color_scale);
     var max = d3.max(data), min = d3.min(data);
 
