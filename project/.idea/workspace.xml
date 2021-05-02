@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23d04ac7-5285-4abc-a6b4-80968d808ec6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myScript" beforeDir="false" afterPath="$PROJECT_DIR$/myScript" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myScript">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="141" column="15" lean-forward="true" selection-start-line="141" selection-start-column="15" selection-end-line="141" selection-end-column="15" />
+            <state relative-caret-position="613">
+              <caret line="164" column="28" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -44,7 +41,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CLASSDROPDOWN</find>
       <find>[num</find>
       <find>summary</find>
       <find>classdropdown</find>
@@ -73,6 +69,7 @@
       <find>charts</find>
       <find>console.log</find>
       <find>buttons</find>
+      <find>buttonlength</find>
       <find>activebutton</find>
     </findStrings>
   </component>
@@ -128,7 +125,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619984336371" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619984810073" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../smallmultiples" />
   </component>
   <component name="RunDashboard">
@@ -233,8 +230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myScript">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="141" column="15" lean-forward="true" selection-start-line="141" selection-start-column="15" selection-end-line="141" selection-end-column="15" />
+        <state relative-caret-position="613">
+          <caret line="164" column="28" selection-start-line="164" selection-start-column="28" selection-end-line="164" selection-end-column="28" />
         </state>
       </provider>
     </entry>

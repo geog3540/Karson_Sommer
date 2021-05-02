@@ -85,7 +85,7 @@ var buttons = [
     {'btn': '#buttonLength'},//, 'scale': quantile_scale},
     {'btn': '#buttonVehicleMiles'}//, 'scale': equal_interval_scale}
 ];
-activeButton = 'buttonLength'
+activeButton = 'buttonLength';
 
 var bins = d3.histogram()
 .domain(hist_scale.domain())
@@ -139,30 +139,38 @@ d3.json(polygonJSONFile).then(function(data) {
                 d3.selectAll('.btn').classed('active', false);
                 d3.select(this).classed('active', true);
                 var buttonid = d3.select(this).node().id;
-                
+                activeButton = buttonid;
+                console.log('button ' + buttonid)
+                console.log('inner ' + activeButton)
                 if(buttonid == "buttonLength"){
                     $(".container").fadeOut(200);
                     functionAlert("These charts will summarize roads by the percent of total length in each county");
-                    activeButton = buttonid;
-                    console.log('button ' + buttonid)
-                    console.log('inner ' + activeButton)
-                }else if(buttonid == "buttonVehicleMiles"){
+                } else if(buttonid == "buttonVehicleMiles"){
                     $(".container").fadeOut(200);
                     functionAlert("These charts will summarize roads by percent of total miles driven by vehicles for each county. Roads with more traffic will have higher weight, and low traffic roads will have less weight");
-                    activeButton = buttonid;
-                    console.log('button ' + buttonid)
-                    console.log('inner ' + activeButton)
                 }
 
                 //current_scale = d.scale;
+                if(activeButton == 'buttonLength') {
+                    charts[0].var = d3.select('#classDropdown').node().value;
+                    charts[0].ax = d3.select('#classDropdown').node().value;
+                } else if(activeButton == 'buttonVehicleMiles') {
+                    charts[0].var = 'vm' + d3.select('#classDropdown').node().value;
+                    charts[0].ax = 'vm' + d3.select('#classDropdown').node().value;
+                } else {
+                    err.message;
+                }
+
                 rescale(polygons);
+                updateHistogram(polygons);
             });
         });
+
         d3.select('#classDropdown').on('input', function() {
-            if(activeButton = 'buttonLength') {
+            if(activeButton == 'buttonLength') {
                 charts[0].var = d3.select('#classDropdown').node().value;
                 charts[0].ax = d3.select('#classDropdown').node().value;
-            } else if(activeButton = 'buttonVehicleMiles') {
+            } else if(activeButton == 'buttonVehicleMiles') {
                 charts[0].var = 'vm' + d3.select('#classDropdown').node().value;
                 charts[0].ax = 'vm' + d3.select('#classDropdown').node().value;
             } else {
