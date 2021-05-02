@@ -23,7 +23,9 @@ var colors =  colorbrewer.YlOrRd;
 // att1format: enter the d3.format string to display the variables in the format you like
 // Check this link on how to specify the desired format:
 // https://observablehq.com/@d3/d3-format
-att1 = 'testingPerCapita', att1alias =  '# tests per person', att1format = '.1f'
+var att1 = 'Street';
+var att1alias = 'Street';
+var att1format = '.1%';
 
 // enter below all variables that should be normalized. If you would like to multiple the variables
 // with a constant value enter them in multiplyBy array. If there is no need for multiplication,
@@ -49,17 +51,19 @@ att1 = 'testingPerCapita', att1alias =  '# tests per person', att1format = '.1f'
 //Get the selected name of the dropdown
 var suffix = d3.select('#classDropdown').node();
 
-
-//var color_scale = colors[numClasses];
+var numClasses = 5;
+var color_scale = colors[numClasses];
+console.log(color_scale)
 
 // Height, width, margins
-/*var chartWidth = d3.select('#divMap1')
-.node().getBoundingClientRect().width,
-chartHeight = chartWidth * widthheightRatio;
-var margin = {top: 10, right: 20, bottom: 10, left:20},
-width = chartWidth - margin.right - margin.left,
-height = chartHeight - margin.top - margin.bottom,
-histHeight = (chartHeight * .25);
+//var chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
+var chartWidth=500;
+var chartHeight = chartWidth * widthheightRatio;
+var margin = {top: 10, right: 20, bottom: 10, left:20};
+var width = chartWidth - margin.right - margin.left;
+var height = chartHeight - margin.top - margin.bottom;
+var histHeight = (chartHeight * .25);
+
 
 // Save scales as global scale variables
 //TODO: fix the classifications
@@ -70,27 +74,23 @@ equal_interval_scale = d3.scaleQuantize().range(color_scale),	// interval
 hist_scale = d3.scaleLinear().range([0, width]), // hist X
 hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
 
+
 current_scale = quantile_scale;	// Save scales as global scale variable
 
 var charts = [
-    {'map': '#divMap1', 'hist': '#divHist1', 'form': att1format,
-    'var': att1, 'ax': att1alias},
-    {'map': '#divMap2', 'hist': '#divHist2', 'form': att2format,
-    'var': att2, 'ax': att2alias},
-    {'map': '#divMap3', 'hist': '#divHist3', 'form': att3format,
-    'var': att3, 'ax': att3alias},
-    {'map': '#divMap4', 'hist': '#divHist4', 'form': att4format,
-    'var': att4, 'ax': att4alias}],
-*/
-buttons = [
+    {'map': '#myMap', 'hist': '#divHist1', 'form': att1format,
+    'var': att1, 'ax': att1alias}
+];
+
+var buttons = [
     {'btn': '#buttonLength'},//, 'scale': quantile_scale},
     {'btn': '#buttonVehicleMiles'}//, 'scale': equal_interval_scale}
 ];
 
-/*var bins = d3.histogram()
+var bins = d3.histogram()
 .domain(hist_scale.domain())
 .thresholds(10);
-*/
+
     ///////////////////////////////////
     // Functions for the chart
     ///////////////////////////////////
@@ -105,7 +105,7 @@ d3.selection.prototype.moveToBack = function() {
     });
 }
 
-/*
+
 // Set up the legend dimensions and style
 var holdLegend = d3.legendColor()
 .shapeWidth(15)
@@ -115,8 +115,8 @@ var holdLegend = d3.legendColor()
 .labelFormat(d3.format(att1format))
 .useClass(false)
 .scale(current_scale);
-*/
-/*
+
+
     //this is where you read the json polygon data
 d3.json(polygonJSONFile).then(function(data) {
         // set up the projection
@@ -154,6 +154,7 @@ d3.json(polygonJSONFile).then(function(data) {
         d3.select('#classDropdown').on('input', function() {
             rescale(polygons);
         });
+
 
         // For each input attribute make a map and a histogram
         charts.forEach(function(d) {
@@ -200,62 +201,63 @@ d3.json(polygonJSONFile).then(function(data) {
                     return d.form + e; }
                     else {
                         return e; };
-                    }));
+            }));
 
-                    // hist axis label
-                    hist.append('text')
-                    .attr('transform', 'translate(' + (width/2) + ',' +
-                    (histHeight + 35) + ')')
-                    .style('font-family', 'sans-serif')
-                    .style('text-anchor', 'middle')
-                    .text(d.ax);
+            // hist axis label
+            hist.append('text')
+            .attr('transform', 'translate(' + (width/2) + ',' +
+            (histHeight + 35) + ')')
+            .style('font-family', 'sans-serif')
+            .style('text-anchor', 'middle')
+            .text(d.ax);
 
-                    // tooltip for maps
-                    var tooltipD3 = d3.select(d.map)
-                    .append("div")
-                    .attr("class", "tooltipD3")
-                    .attr("id", function() { return d.map.substr(1) + '-tooltip'; })
-                    .style('display', 'none');
+            // tooltip for maps
+            var tooltipD3 = d3.select(d.map)
+            .append("div")
+            .attr("class", "tooltipD3")
+            .attr("id", function() { return d.map.substr(1) + '-tooltip'; })
+            .style('display', 'none');
 
-                    // Set up the panel that includes the map and the legend
-                    var panel = d3.select(d.map).append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            // Set up the panel that includes the map and the legend
+            var panel = d3.select(d.map).append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-                    // append the choropleth map
-                    var map = panel.selectAll('.path')
-                    .data(polygons.features)
-                    .enter().append('g');
-                    map.append('path')
-                    .attr("class", function(e) { return classPolygon(e, d.map); })
-                    .on('mouseover', function(e) { return mouseOver2(e, dependent); })
-                    .on('mouseout', mouseOut)
-                    .on('mousemove', mousemoveFunc)
-                    .attr("d", proj)
-                    .style('fill', function(c) {
-                        return current_scale(+c.properties[d.var]);
-                    });
-
-                    holdLegend.labelFormat(d.form);
-                    // add the legend
-                    panel.append('g')
-                    .attr("class", "legendQuant")
-                    .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
-                    panel.select('.legendQuant').call(holdLegend.scale(current_scale));
-
-                    // add north arrow
-                    // panel
-                    // .append('path')
-                    // .attr('id', 'arrow')
-                    // .attr("d", "M 6 0 12 12 6 9 0 12")
-                    // .attr('fill', "black")
-                    // .attr("transform", "translate(" + margin.left + "," + margin.top + ") rotate("+ 0 +")");
-
-                }); // end for each
+            // append the choropleth map
+            var map = panel.selectAll('.path')
+            .data(polygons.features)
+            .enter().append('g');
+            map.append('path')
+            .attr("class", function(e) { return classPolygon(e, d.map); })
+            .on('mouseover', function(e) { return mouseOver2(e, dependent); })
+            .on('mouseout', mouseOut)
+            .on('mousemove', mousemoveFunc)
+            .attr("d", proj)
+            .style('fill', function(c) {
+                return current_scale(+c.properties[d.var]);
             });
-*/
+
+            holdLegend.labelFormat(d.form);
+            // add the legend
+            panel.append('g')
+            .attr("class", "legendQuant")
+            .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
+            panel.select('.legendQuant').call(holdLegend.scale(current_scale));
+
+            // add north arrow
+            // panel
+            // .append('path')
+            // .attr('id', 'arrow')
+            // .attr("d", "M 6 0 12 12 6 9 0 12")
+            // .attr('fill', "black")
+            // .attr("transform", "translate(" + margin.left + "," + margin.top + ") rotate("+ 0 +")");
+
+        }); // end for each
+
+});
+
 function recalculateAttribute(attribute, multiplyby, divideby) {
     // Function to catch errors when normalizing an attribute
     // console.log(p, n);
@@ -348,7 +350,7 @@ function mouseOut(polygon) {
 function setScales(data) {
 
     //grab the number of classes from the dropdown list
-    var numClasses = d3.select('#classDropdown').node().value;
+    //var numClasses = d3.select('#classDropdown').node().value;
     color_scale = colors[numClasses];
     current_scale.range(color_scale);
     var max = d3.max(data), min = d3.min(data);
