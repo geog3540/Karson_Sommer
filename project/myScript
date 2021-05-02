@@ -116,7 +116,6 @@ var holdLegend = d3.legendColor()
 .useClass(false)
 .scale(current_scale);
 
-
     //this is where you read the json polygon data
 d3.json(polygonJSONFile).then(function(data) {
         // set up the projection
@@ -140,14 +139,15 @@ d3.json(polygonJSONFile).then(function(data) {
                 d3.select(this).classed('active', true);
                 var buttonid = d3.select(this).node().id;
                 activeButton = buttonid;
-                console.log('button ' + buttonid)
-                console.log('inner ' + activeButton)
-                if(buttonid == "buttonLength"){
-                    $(".container").fadeOut(200);
-                    functionAlert("These charts will summarize roads by the percent of total length in each county");
-                } else if(buttonid == "buttonVehicleMiles"){
-                    $(".container").fadeOut(200);
-                    functionAlert("These charts will summarize roads by percent of total miles driven by vehicles for each county. Roads with more traffic will have higher weight, and low traffic roads will have less weight");
+
+                if(document.getElementById("myCheck").checked) {
+                    if(buttonid == "buttonLength"){
+                        $(".container").fadeOut(200);
+                        functionAlert("These charts will summarize roads by the percent of total length in each county");
+                    } else if(buttonid == "buttonVehicleMiles"){
+                        $(".container").fadeOut(200);
+                        functionAlert("These charts will summarize roads by percent of total miles driven by vehicles for each county. Roads with more traffic will have higher weight, and low traffic roads will have less weight");
+                    }
                 }
 
                 //current_scale = d.scale;
@@ -176,8 +176,6 @@ d3.json(polygonJSONFile).then(function(data) {
             } else {
                 err.message;
             }
-
-            console.log('mybutt ' + activeButton)
 
             rescale(polygons);
             updateHistogram(polygons);
