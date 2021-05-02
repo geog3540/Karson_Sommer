@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23d04ac7-5285-4abc-a6b4-80968d808ec6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myScript" beforeDir="false" afterPath="$PROJECT_DIR$/myScript" afterDir="false" />
     </list>
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+            <state relative-caret-position="263">
+              <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myScript">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="355" column="30" lean-forward="true" selection-start-line="355" selection-start-column="30" selection-end-line="355" selection-end-column="30" />
+            <state relative-caret-position="203">
+              <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -36,34 +35,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>button</find>
-      <find>quantile_scale</find>
-      <find>buttons</find>
-      <find>suffix</find>
-      <find>divmap1</find>
-      <find>#divmap</find>
-      <find>#divmap1</find>
-      <find>script</find>
-      <find>html</find>
-      <find>mymap</find>
       <find>chartwidth</find>
-      <find>polygons</find>
-      <find>charts</find>
       <find>att1format</find>
-      <find>current_scale</find>
       <find>numclasses</find>
       <find>county</find>
       <find>name</find>
       <find>nameatt</find>
       <find>nameattribute</find>
-      <find>att1</find>
-      <find>setscales</find>
       <find>hist</find>
-      <find>classdropdown</find>
-      <find>console.log</find>
       <find>width</find>
       <find>CLASSDROPDOWN</find>
       <find>[num</find>
+      <find>summary</find>
+      <find>classdropdown</find>
+      <find>setscales(</find>
+      <find>current_scale</find>
+      <find>colors</find>
+      <find>color_scale</find>
+      <find>data</find>
+      <find>rescale(</find>
+      <find>polygons</find>
+      <find>setscales</find>
+      <find>att1</find>
+      <find>charts</find>
+      <find>console.log</find>
+      <find>classes</find>
+      <find>divhist1</find>
+      <find>resca</find>
+      <find>rescale</find>
+      <find>.1</find>
+      <find>att1form</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,7 +117,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619975664285" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1619980711288" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../smallmultiples" />
   </component>
   <component name="RunDashboard">
@@ -200,15 +201,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+        <state relative-caret-position="263">
+          <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myScript">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="355" column="30" lean-forward="true" selection-start-line="355" selection-start-column="30" selection-end-line="355" selection-end-column="30" />
+        <state relative-caret-position="203">
+          <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
         </state>
       </provider>
     </entry>
