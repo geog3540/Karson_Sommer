@@ -71,7 +71,9 @@ d3.json(polygonJSONFile2).then(function(data2) {
         // Set the buttons up for interactivity
         buttons2.forEach(function(d) {
             d3.select(d.btn).on('click', function() {
-                d3.selectAll('.btn').classed('active', false);
+                d3.select('#buttonLength2').classed('active', false);
+                d3.select('#buttonVehicleMiles2').classed('active', false);
+                //d3.selectAll('.btn').classed('active', false);
                 d3.select(this).classed('active', true);
                 var buttonid2 = d3.select(this).node().id;
                 activeButton2 = buttonid2;
@@ -211,8 +213,8 @@ function mouseOver2(polygon2, attr2) {
         // map tooltip
         d3.select(tip2)
         .style('display', null)
-        .html("<p><b>" + name2 + " " + nameAttribute2 + "</b><br/>" + d.var +
-        ": " + polygon2.properties[d.var] + "</p>");
+        .html("<p><b>" + name2 + " " + nameAttribute2 + "</b><br/>" +
+        polygon2.properties[d.var] + "</p>");
 
     });
 }

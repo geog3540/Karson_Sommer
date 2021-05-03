@@ -62,16 +62,17 @@
 				<!--<div class="col-sm-4">-->
 				<h2>Summary</h2>
 				<p>Consider what street you live on? Maybe it is 1st Street. Maybe it is Elm Court. Maybe it is Interstate 80. What is the actual distribution of road suffixes?</p>
-				<p>We focus our analysis on the state of Iowa. Data is taken from the <a href="https://data.iowadot.gov/datasets/road-network-2">Iowa Department of
+				<p>We focus our analysis on the state of Iowa. Data is taken from the <a href="https://data.iowadot.gov/datasets/road-network-2" style="font-weight:bold;">Iowa Department of
 					Transportation Road Access Management System (RAMS)</a>.</p>
 				<p>This dataset is extracted in the form of a shapefile and has 309,000 entries as well as 109 attributes.
 					For the analyses, we are only interested in the road name, so we discard all but 5 columns. 4 of the columns represent the names of the road. A municipal name,
 					a secondary name, a county name, and a state name. This was reduced to a single name per county by taking the lowest priority name. So if a road has both
 					a municipal name but is also a state signed route, we will only consider the municipal name. The other 1 column is the Average Annual Daily Traffic.</p>
 				<p>Using QGIS, the length for each road segment is appended to each entry. Additionally, the road segments are joined against each county in Iowa to retain the FIPS code and name.
-					Then, the data is imported into Azure Databricks. SQL queries are used to compute the total length. The actual query SQL query can be <a href="./aGeography.html">found here</a>. </p>
+					Then, the data is imported into Azure Databricks. SQL queries are used to compute the total length. <a href="./aGeography.html" style="font-weight:bold;">The SQL query</a> can be viewed in an interactive document.</p>
 				<p>In addition to the analysis presented here, another analysis was conducted. This focused primarly on the safety of roads in Iowa based on their physical characteristics.
-					The presentation can be found <a href="./files/road_safety_analysis.pdf">Presentation</a></p>
+					The presentation is titled, <a href="./files/road_safety_analysis.pdf" style="font-weight:bold;">Iowa Road Safety</a>,
+					and was put together for the class Big Data Management & Analytics.</p>
 
 				<h2>Most Common Suffixes by County</h2>
 				<p>The first set of maps to consider is which road suffix is most common for each county?</p>
@@ -98,7 +99,17 @@
 			<div class="row">
 				<div id="myMap2"></div>
 			</div>
-
+			<div class="row">
+				<p>It can be observed from the break down by length that most counties in Iowa are dominated by streets. This is actually somewhat misleading. In reality,
+				most of the counties with streets use a grid system, where streets are half the grid and avenues are the other half of the grid. Since streets are also used
+				in urban areas, it means that they have slightly longer length in all of those counties.</p>
+				<p>Northeastern Iowa is dominated by roads. Northeastern Iowa is the driftless region, an unglaciated region that is very hilly. The road network there is
+				much different than the rest of Iowa and that fact is even reflected in the road names.</p>
+				<p>Analyzing by vehicle miles, most of the state is led by NULL values. These values likely correspond to various highway systems.
+				It may be that they are not propertly encoded in the original dataset.</p>
+				<p>Northeast Iowa is very rural and doesn't have a major highway passing through the region. Since residents are forced
+				to use surface streets, it means the amount of miles travelled on those streets are higher.</p>
+			</div>
 			<div class="row">
 				<h2>Distribution of Road Suffixes</h2>
 				<p>The second analyses focuses on the distribution of a particular road suffix. For instance, where would
@@ -150,6 +161,21 @@
 				<div id="myMap"></div>
 				<div id="divHist1"></div>
 			</div>
+			<div class="row">
+				<p>These maps show a lot of information. First, examine the road suffixes which are presented in the first map
+				as being the most common. Streets are everywhere except for the northeast region dominated by roads. Avenues are
+				pretty much every, except Cass County has only 0.49% by length! Examining MALFORMED values, we see that Chickasaw County is 77% bad. This is due
+				to the suffixes being omitted in the dataset for their county. The roads have suffixes in real life, so this is a data error.</p>
+				<p>Most of the suffixes have almost no prescence across the state. Since much of Iowa is rural and uses the grid system,
+				this means that these counties are dominated by avenues, streets, highways, and roads. Other road suffixes are usually
+				associated with suburban development. And many developers will pick a subset of road suffixes to use. This leads
+				to some subdivisions causing certain counties to stand out.</p>
+				<p>By miles driven, the proportion for all of the suburban suffixes decreases. This makes sense because people
+				only use suburban roads to get to residences. Similarly, avenues and streets decrease in proportion. While
+				these roads are found everywhere, they are usually gravel roads that only service farms. So they don't
+				see that much traffic.</p>
+
+			</div>
 
 
 
@@ -164,7 +190,7 @@
 </div>
 
 </body>
-<script src="./myScript"></script>
-<script src="./myScript2"></script>
+<script src="./myScript.js"></script>
+<script src="./myScript2.js"></script>
 
 </html>

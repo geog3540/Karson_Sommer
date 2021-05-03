@@ -114,7 +114,9 @@ d3.json(polygonJSONFile).then(function(data) {
         // Set the buttons up for interactivity
         buttons.forEach(function(d) {
             d3.select(d.btn).on('click', function() {
-                d3.selectAll('.btn').classed('active', false);
+                d3.select('#buttonLength').classed('active', false);
+                d3.select('#buttonVehicleMiles').classed('active', false);
+                //d3.selectAll('.btn').classed('active', false);
                 d3.select(this).classed('active', true);
                 var buttonid = d3.select(this).node().id;
                 activeButton = buttonid;
