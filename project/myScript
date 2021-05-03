@@ -359,8 +359,8 @@ function mousemoveFunc(polygon) {
         var offsetX = d3.select('#myMap').node().getBoundingClientRect().x
 
         d3.select(tip)
-        .style("top", (polygonOnMap[1] + offsetY - 40) + "px" )
-        .style("left", (polygonOnMap[0] + offsetX + 30) + "px");
+        .style("top", (polygonOnMap[1] + offsetY + window.pageYOffset - 40) + "px" )
+        .style("left", (polygonOnMap[0] + offsetX + window.pageXOffset + 30) + "px");
     });
 }
 
