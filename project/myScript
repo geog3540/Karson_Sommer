@@ -269,20 +269,11 @@ d3.json(polygonJSONFile).then(function(data) {
             .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
             panel.select('.legendQuant').call(holdLegend.scale(current_scale));
 
-            // add north arrow
-            // panel
-            // .append('path')
-            // .attr('id', 'arrow')
-            // .attr("d", "M 6 0 12 12 6 9 0 12")
-            // .attr('fill', "black")
-            // .attr("transform", "translate(" + margin.left + "," + margin.top + ") rotate("+ 0 +")");
-
         }); // end for each
 
 });
 
 function updateHistogram(polygons) {
-
     charts.forEach(function(d) {
             var dependent = d.var;
 
@@ -382,6 +373,7 @@ function mouseOver2(polygon, attr) {
         .style('stroke', 'black')
         .style('opacity', '1');
 
+console.log("asdf")
         // map tooltip
         d3.select(tip)
         .style('display', null)
@@ -399,10 +391,13 @@ function mousemoveFunc(polygon) {
         var map = d3.select(d.map),
         polygonOnMap = getBoundingBoxCenter(map.select(id));
 
+        //console.log(polygonOnMap)
+        console.log("cw " + chartWidth)
+        console.log("w " + width)
         var tip = d.map + '-tooltip';
         d3.select(tip)
-        .style("top", (polygonOnMap[1] + 400) + "px" )
-        .style("left", (polygonOnMap[0] + 150) + "px");
+        .style("top", (polygonOnMap[1] + chartHeight) + "px" )
+        .style("left", (polygonOnMap[0] ) + "px");
     });
 }
 
