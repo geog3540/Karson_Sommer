@@ -276,9 +276,11 @@ function displayWindowSize() {
     chartHeight = chartWidth * widthheightRatio;
     margin = {top: 10, right: 20, bottom: 10, left:20};
     width = chartWidth - margin.right - margin.left;
-    console.log('w' + width)
+    console.log('w: ' + width)
+    console.log('cw: ' + chartWidth)
     height = chartHeight - margin.top - margin.bottom;
-    console.log('h' + height)
+    console.log('h: ' + height)
+    console.log('ch: ' + chartHeight)
     histHeight = (chartHeight * .25);
 
     hist_scale = d3.scaleLinear().range([0, width]); // hist X
@@ -329,7 +331,6 @@ function mouseOver2(polygon, attr) {
 
         var map = d3.select(d.map);
         var tip = d.map + '-tooltip';
-
         // select the polygon by its id attribute
         map.select('.polygon'+id)
         .moveToFront()
@@ -339,7 +340,7 @@ function mouseOver2(polygon, attr) {
         // map tooltip
         d3.select(tip)
         .style('display', null)
-        .html("<p><b>" + name + " "+ nameAttribute + "</b><br/>" + d.var +
+        .html("<p><b>" + name + " " + nameAttribute + "</b><br/>" + d.var +
         ": " + d3.format(d.form)(polygon.properties[d.var]) + "</p>");
     });
 }
@@ -350,12 +351,16 @@ function mousemoveFunc(polygon) {
     var id  = '.polygon' + polygon.properties[idAttribute];
 
     charts.forEach(function(d) {
-        var map = d3.select(d.map),
-        polygonOnMap = getBoundingBoxCenter(map.select(id));
+        var map = d3.select(d.map);
+        var polygonOnMap = getBoundingBoxCenter(map.select(id));
         var tip = d.map + '-tooltip';
+
+        var offsetY = d3.select('#myMap').node().getBoundingClientRect().y
+        var offsetX = d3.select('#myMap').node().getBoundingClientRect().x
+
         d3.select(tip)
-        .style("top", (polygonOnMap[1] ) + "px" )
-        .style("left", (polygonOnMap[0] ) + "px");
+        .style("top", (polygonOnMap[1] + offsetY - 40) + "px" )
+        .style("left", (polygonOnMap[0] + offsetX + 30) + "px");
     });
 }
 
