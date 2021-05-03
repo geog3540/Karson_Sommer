@@ -56,7 +56,7 @@ var holdLegend = d3.legendColor()
 .shapePadding(10)
 .orient('vertical')
 .useClass(false)
-.scale(ordinal)
+.scale(current_scale)
 
 
 var polygons;
@@ -73,6 +73,7 @@ d3.json(polygonJSONFile).then(function(data) {
             d3.select(d.btn).on('click', function() {
                 var buttonid = d3.select(this).node().id;
                 activeButton = buttonid;
+                console.log(activeButton)
 
                 //current_scale = d.scale;
                 if(activeButton == 'buttonLength') {
@@ -84,6 +85,8 @@ d3.json(polygonJSONFile).then(function(data) {
                 } else {
                     err.message;
                 }
+
+                updateMap2(polygons)
             });
         });
 
@@ -99,6 +102,7 @@ function updateMap2(polygons) {
             d3.select("#panelSVG2").remove();
 
             var dependent = d.var;
+            console.log(dependent)
 
             // tooltip for maps
             var tooltipD3 = d3.select(d.map)
@@ -133,8 +137,10 @@ function updateMap2(polygons) {
             holdLegend.labelFormat(d.form);
             // add the legend
             panel.append('g')
-            //.attr("class", "legendQuant")
+            .attr("class", "legendQuant")
             .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
+            panel.select('.legendQuant').call(holdLegend.scale(current_scale));
+
         })
 }
 
@@ -153,11 +159,9 @@ function displayWindowSize2() {
     .domain(hist_scale.domain())
     .thresholds(10);
 
-    updateHistogram(polygons);
-
     proj.projection(projection.fitSize([width, height], polygons));
 
-    updateMap(polygons);
+    updateMap2(polygons);
 }
 
 function classPolygon2(polygon, map) {
