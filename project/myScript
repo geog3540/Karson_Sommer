@@ -1,5 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO: Change the variables below to customize the small multiples interface for your data
 var polygonJSONFile = 'data/RoadInfo.geojson'
 // change the projection if needed *d3.geoAlbers()*
 var projection = d3.geoAlbers();
@@ -25,6 +23,11 @@ var colors =  colorbrewer.RdPu;
 var att1 = d3.select('#classDropdown').node().value;
 var att1alias = d3.select('#classDropdown').node().value;
 var att1format = '.2%';
+
+var charts = [
+    {'map': '#myMap', 'hist': '#divHist1', 'form': att1format,
+    'var': att1, 'ax': att1alias}
+];
 
  var attributesToBeNormalized = [];
  var multiplyBy = [];
@@ -57,10 +60,6 @@ var hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
 
 current_scale = jenks_scale;	// Save scales as global scale variable
 
-var charts = [
-    {'map': '#myMap', 'hist': '#divHist1', 'form': att1format,
-    'var': att1, 'ax': att1alias}
-];
 
 var buttons = [
     {'btn': '#buttonLength'},
@@ -83,7 +82,6 @@ d3.selection.prototype.moveToBack = function() {
         this.parentNode.appendChild(this).style('z-index', 1);
     });
 }
-
 
 // Set up the legend dimensions and style
 var holdLegend = d3.legendColor()
@@ -131,7 +129,6 @@ d3.json(polygonJSONFile).then(function(data) {
                     }
                 }
 
-                //current_scale = d.scale;
                 if(activeButton == 'buttonLength') {
                     charts[0].var = d3.select('#classDropdown').node().value;
                     charts[0].ax = d3.select('#classDropdown').node().value;
