@@ -72,9 +72,7 @@ var bins = d3.histogram()
 .domain(hist_scale.domain())
 .thresholds(10);
 
-    ///////////////////////////////////
-    // Functions for the chart
-    ///////////////////////////////////
+// Functions for the chart
 d3.selection.prototype.moveToFront = function() {
     return this.each(function(){
         this.parentNode.appendChild(this);
@@ -98,12 +96,12 @@ var holdLegend = d3.legendColor()
 .scale(current_scale);
 
 var polygons;
-
+var proj;
     //this is where you read the json polygon data
 d3.json(polygonJSONFile).then(function(data) {
         // set up the projection
         polygons = data;
-        var proj = d3.geoPath().pointRadius(2);
+        proj = d3.geoPath().pointRadius(2);
         // TODO: change the projection details here below - including specific parameters such as rotation, extent, etc.
         proj.projection(projection.fitSize([width, height], polygons));
 
@@ -167,46 +165,7 @@ d3.json(polygonJSONFile).then(function(data) {
         updateHistogram(polygons)
 
         // For each input attribute make a map and a histogram
-        charts.forEach(function(d) {
-            // Set scales + variable for each map
-            var dependent = d.var;
-
-            // tooltip for maps
-            var tooltipD3 = d3.select(d.map)
-            .append("div")
-            .attr("class", "tooltipD3")
-            .attr("id", function() { return d.map.substr(1) + '-tooltip'; })
-            .style('display', 'none');
-
-            // Set up the panel that includes the map and the legend
-            var panel = d3.select(d.map).append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-            // append the choropleth map
-            var map = panel.selectAll('.path')
-            .data(polygons.features)
-            .enter().append('g');
-            map.append('path')
-            .attr("class", function(e) { return classPolygon(e, d.map); })
-            .on('mouseover', function(e) { return mouseOver2(e, dependent); })
-            .on('mouseout', mouseOut)
-            .on('mousemove', mousemoveFunc)
-            .attr("d", proj)
-            .style('fill', function(c) {
-                return current_scale(+c.properties[d.var]);
-            });
-
-            holdLegend.labelFormat(d.form);
-            // add the legend
-            panel.append('g')
-            .attr("class", "legendQuant")
-            .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
-            panel.select('.legendQuant').call(holdLegend.scale(current_scale));
-
-        }); // end for each
+        updateMap(polygons)
 
 });
 
@@ -266,6 +225,51 @@ function updateHistogram(polygons) {
     });
 }
 
+function updateMap(polygons) {
+        charts.forEach(function(d) {
+            // Set scales + variable for each map
+            d3.select("#panelSVG").remove();
+
+            var dependent = d.var;
+
+            // tooltip for maps
+            var tooltipD3 = d3.select(d.map)
+            .append("div")
+            .attr("class", "tooltipD3")
+            .attr("id", function() { return d.map.substr(1) + '-tooltip'; })
+            .style('display', 'none');
+
+            // Set up the panel that includes the map and the legend
+            var panel = d3.select(d.map).append("svg")
+            .attr("id","panelSVG")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            // append the choropleth map
+            var map = panel.selectAll('.path')
+            .data(polygons.features)
+            .enter().append('g');
+            map.append('path')
+            .attr("class", function(e) { return classPolygon(e, d.map); })
+            .on('mouseover', function(e) { return mouseOver2(e, dependent); })
+            .on('mouseout', mouseOut)
+            .on('mousemove', mousemoveFunc)
+            .attr("d", proj)
+            .style('fill', function(c) {
+                return current_scale(+c.properties[d.var]);
+            });
+
+            holdLegend.labelFormat(d.form);
+            // add the legend
+            panel.append('g')
+            .attr("class", "legendQuant")
+            .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
+            panel.select('.legendQuant').call(holdLegend.scale(current_scale));
+        })
+}
+
 window.addEventListener("resize", displayWindowSize);
 function displayWindowSize() {
     chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
@@ -282,7 +286,12 @@ function displayWindowSize() {
     bins = d3.histogram()
     .domain(hist_scale.domain())
     .thresholds(10);
-    updateHistogram(polygons)
+
+    updateHistogram(polygons);
+
+    proj.projection(projection.fitSize([width, height], polygons));
+
+    updateMap(polygons);
 }
 
 function recalculateAttribute(attribute, multiplyby, divideby) {
