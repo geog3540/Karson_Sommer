@@ -1,36 +1,36 @@
-var polygonJSONFile = 'data/RoadSummary.geojson'
+var polygonJSONFile2 = 'data/RoadSummary.geojson'
 // change the projection if needed *d3.geoAlbers()*
-var projection = d3.geoAlbers();
+var projection2 = d3.geoAlbers();
 // Relative placement of legend that ranges between 0 and 1.
 // 0 is the start, whereas 1 i the end of each panel.
 // If you want to put the legend on the left, then use 0.
 // legendY = 0.5 puts the legend in the middle of the Y Axis.
-var legendX = 0.1, legendY = 0.7
+var legendX2 = 0.1, legendY2 = 0.72
 
 // id attribute and the name attribute to be used in the tooltip
-var idAttribute = 'FIPS', nameAttribute = 'County';
+var idAttribute2 = 'FIPS', nameAttribute2 = 'County';
 
 
 // Height, width, margins
-var widthheightRatio = 0.4;
-var chartWidth = d3.select('#myMap2').node().getBoundingClientRect().width;
-var chartHeight = chartWidth * widthheightRatio;
-var margin = {top: 10, right: 20, bottom: 10, left:20};
-var width = chartWidth - margin.right - margin.left;
-var height = chartHeight - margin.top - margin.bottom;
-var histHeight = (chartHeight * .25);
+var widthheightRatio2 = 0.4;
+var chartWidth2 = d3.select('#myMap2').node().getBoundingClientRect().width;
+var chartHeight2 = chartWidth2 * widthheightRatio2;
+var margin2 = {top: 10, right: 20, bottom: 10, left:20};
+var width2 = chartWidth2 - margin2.right - margin2.left;
+var height2 = chartHeight2 - margin2.top - margin2.bottom;
+var histHeight2 = (chartHeight2 * .25);
 
-var att1 = "Length";
-var att1alias = "Length";
-var charts = [
-    {'map': '#myMap2', 'var': att1, 'ax': att1alias}
+var att12 = "Length";
+var att1alias2 = "Length";
+var charts2 = [
+    {'map2': '#myMap2', 'var': att12, 'ax': att1alias2}
 ];
 
-var buttons = [
-    {'btn': '#buttonLength'},
-    {'btn': '#buttonVehicleMiles'}
+var buttons2 = [
+    {'btn': '#buttonLength2'},
+    {'btn': '#buttonVehicleMiles2'}
 ];
-activeButton = 'buttonLength';
+activeButton2 = 'buttonLength2';
 
 // Functions for the chart
 d3.selection.prototype.moveToFront = function() {
@@ -44,203 +44,214 @@ d3.selection.prototype.moveToBack = function() {
     });
 }
 
-var ordinal = d3.scaleOrdinal(d3.schemeCategory10)
+var ordinal2 = d3.scaleOrdinal(d3.schemeCategory10)
 .domain(["Avenue", "Street", "Highway", "Way", "Road", "MALFORMED", "NULL"])
 
-var current_scale = ordinal;
+var current_scale2 = ordinal2;
 
 // Set up the legend dimensions and style
-var holdLegend = d3.legendColor()
+var holdLegend2 = d3.legendColor()
 .shapeWidth(15)
 .shapeHeight(5)
 .shapePadding(10)
 .orient('vertical')
 .useClass(false)
-.scale(current_scale)
+.scale(current_scale2)
 
 
-var polygons;
-var proj;
+var polygons2;
+var proj2;
     //this is where you read the json polygon data
-d3.json(polygonJSONFile).then(function(data) {
+d3.json(polygonJSONFile2).then(function(data2) {
         // set up the projection
-        polygons = data;
-        proj = d3.geoPath().pointRadius(2);
-        proj.projection(projection.fitSize([width, height], polygons));
+        polygons2 = data2;
+        proj2 = d3.geoPath().pointRadius(2);
+        proj2.projection(projection2.fitSize([width2, height2], polygons2));
 
         // Set the buttons up for interactivity
-        buttons.forEach(function(d) {
+        buttons2.forEach(function(d) {
             d3.select(d.btn).on('click', function() {
-                var buttonid = d3.select(this).node().id;
-                activeButton = buttonid;
-                console.log(activeButton)
+                d3.selectAll('.btn').classed('active', false);
+                d3.select(this).classed('active', true);
+                var buttonid2 = d3.select(this).node().id;
+                activeButton2 = buttonid2;
+
+                if(document.getElementById("myCheck2").checked) {
+                    if(buttonid2 == "buttonLength2"){
+                        $(".container").fadeOut(200);
+                        functionAlert("These charts will summarize roads by the percent of total length in each county");
+                    } else if(buttonid2 == "buttonVehicleMiles2"){
+                        $(".container").fadeOut(200);
+                        functionAlert("These charts will summarize roads by percent of total miles driven by vehicles for each county. Roads with more traffic will have higher weight, and low traffic roads will have less weight");
+                    }
+                }
 
                 //current_scale = d.scale;
-                if(activeButton == 'buttonLength') {
-                    charts[0].var = "Length"
-                    charts[0].ax = "Length"
-                } else if(activeButton == 'buttonVehicleMiles') {
-                    charts[0].var = "Vehicle_Miles"
-                    charts[0].ax = "Vehicle_Miles"
+                if(activeButton2 == 'buttonLength2') {
+                    charts2[0].var = "Length"
+                    charts2[0].ax = "Length"
+                } else if(activeButton2 == 'buttonVehicleMiles2') {
+                    charts2[0].var = "Vehicle_Miles"
+                    charts2[0].ax = "Vehicle_Miles"
                 } else {
                     err.message;
                 }
 
-                updateMap2(polygons)
+                updateMap2(polygons2)
             });
         });
 
         // For each input attribute make a map and a histogram
-        updateMap2(polygons)
+        updateMap2(polygons2)
 
 });
 
 
-function updateMap2(polygons) {
-        charts.forEach(function(d) {
+function updateMap2(polygons2) {
+        charts2.forEach(function(d) {
             // Set scales + variable for each map
             d3.select("#panelSVG2").remove();
 
-            var dependent = d.var;
-            console.log(dependent)
+            var dependent2 = d.var;
+            console.log(dependent2)
 
             // tooltip for maps
-            var tooltipD3 = d3.select(d.map)
+            var tooltipD32 = d3.select(d.map2)
             .append("div")
             .attr("class", "tooltipD3")
-            .attr("id", function() { return d.map.substr(1) + '-tooltip'; })
+            .attr("id", function() { return d.map2.substr(1) + '-tooltip'; })
             .style('display', 'none');
 
             // Set up the panel that includes the map and the legend
-            var panel = d3.select(d.map).append("svg")
+            var panel2 = d3.select(d.map2).append("svg")
             .attr("id","panelSVG2")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width2 + margin2.left + margin2.right)
+            .attr("height", height2 + margin2.top + margin2.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
             // append the choropleth map
-            var map = panel.selectAll('.path')
-            .data(polygons.features)
+            var map2 = panel2.selectAll('.path')
+            .data(polygons2.features)
             .enter().append('g');
-            map.append('path')
-            .attr("class", function(e) { return classPolygon2(e, d.map); })
-            .on('mouseover', function(e) { return mouseOver2(e, dependent); })
+            map2.append('path')
+            .attr("class", function(e) { return classPolygon2(e, d.map2); })
+            .on('mouseover', function(e) { return mouseOver2(e, dependent2); })
             .on('mouseout', mouseOut2)
             .on('mousemove', mousemoveFunc2)
-            .attr("d", proj)
+            .attr("d", proj2)
             .style('fill', function(c) {
-                return current_scale(c.properties[d.var]);
+                return current_scale2(c.properties[d.var]);
             });
 
 
-            holdLegend.labelFormat(d.form);
+            holdLegend2.labelFormat(d.form);
             // add the legend
-            panel.append('g')
+            panel2.append('g')
             .attr("class", "legendQuant")
-            .attr("transform", "translate(" + (width * legendX) + "," + (height * legendY) + ")");
-            panel.select('.legendQuant').call(holdLegend.scale(current_scale));
+            .attr("transform", "translate(" + (width2 * legendX2) + "," + (height2 * legendY2) + ")");
+            panel2.select('.legendQuant').call(holdLegend2.scale(current_scale2));
 
         })
 }
 
 window.addEventListener("resize", displayWindowSize2);
 function displayWindowSize2() {
-    chartWidth = d3.select('#myMap2').node().getBoundingClientRect().width;
-    chartHeight = chartWidth * widthheightRatio;
-    margin = {top: 10, right: 20, bottom: 10, left:20};
-    width = chartWidth - margin.right - margin.left;
-    height = chartHeight - margin.top - margin.bottom;
-    histHeight = (chartHeight * .25);
+    chartWidth2 = d3.select('#myMap2').node().getBoundingClientRect().width;
+    chartHeight2 = chartWidth2 * widthheightRatio2;
+    margin2 = {top: 10, right: 20, bottom: 10, left:20};
+    width2 = chartWidth2 - margin2.right - margin2.left;
+    height2 = chartHeight2 - margin2.top - margin2.bottom;
+    histHeight2 = (chartHeight2 * .25);
 
-    hist_scale = d3.scaleLinear().range([0, width]); // hist X
-    hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
-    bins = d3.histogram()
-    .domain(hist_scale.domain())
+    hist_scale2 = d3.scaleLinear().range([0, width2]); // hist X
+    hist_y2 = d3.scaleLinear().range([histHeight2, 0]);	// hist Y
+    bins2 = d3.histogram()
+    .domain(hist_scale2.domain())
     .thresholds(10);
 
-    proj.projection(projection.fitSize([width, height], polygons));
+    proj2.projection(projection2.fitSize([width2, height2], polygons2));
 
-    updateMap2(polygons);
+    updateMap2(polygons2);
 }
 
-function classPolygon2(polygon, map) {
+function classPolygon2(polygon2, map2) {
     // Function to create the correct CSS style name for each polygon.
     // (e.g. Johnson county polygon, FIPS 19) >> 'polygons.lung.polygon19'
-    return 'polygons ' + map + ' polygon' + polygon.properties[idAttribute];
+    return 'polygons ' + map2 + ' polygon' + polygon2.properties[idAttribute2];
 }
 
-function getBoundingBoxCenter2 (selection) {
+function getBoundingBoxCenter2 (selection2) {
     // get the DOM element from a D3 selection
-    var element = selection.node();
+    var element2 = selection2.node();
     // use the native SVG interface to get the bounding box
-    var bbox = element.getBBox();
+    var bbox2 = element2.getBBox();
     // return the center of the bounding box
-    return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
+    return [bbox2.x + bbox2.width/2, bbox2.y + bbox2.height/2];
 }
 
-function mouseOver2(polygon, attr) {
+function mouseOver2(polygon2, attr2) {
     /* Mouse over routine
     Highlight the polygon on all maps, adjust the tooltip */
     //enter the id of the polygon
-    var id = polygon.properties[idAttribute],
+    var id2 = polygon2.properties[idAttribute2],
     //enter the name of the polygon
-    name = polygon.properties[nameAttribute];
+    name2 = polygon2.properties[nameAttribute2];
 
-    return charts.forEach(function(d) {
+    return charts2.forEach(function(d) {
 
-        var map = d3.select(d.map);
-        var tip = d.map + '-tooltip';
+        var map2 = d3.select(d.map2);
+        var tip2 = d.map2 + '-tooltip';
         // select the polygon by its id attribute
-        map.select('.polygon'+id)
+        map2.select('.polygon'+id2)
         .moveToFront()
         .style('stroke', 'black')
         .style('opacity', '1');
 
         // map tooltip
-        d3.select(tip)
+        d3.select(tip2)
         .style('display', null)
-        .html("<p><b>" + name + " " + nameAttribute + "</b><br/>" + d.var +
-        ": " + polygon.properties[d.var] + "</p>");
+        .html("<p><b>" + name2 + " " + nameAttribute2 + "</b><br/>" + d.var +
+        ": " + polygon2.properties[d.var] + "</p>");
 
     });
 }
 
-function mousemoveFunc2(polygon) {
+function mousemoveFunc2(polygon2) {
     /* Moves tooltip */
     //the id of the polygon
-    var id  = '.polygon' + polygon.properties[idAttribute];
+    var id2  = '.polygon' + polygon2.properties[idAttribute2];
 
-    charts.forEach(function(d) {
-        var map = d3.select(d.map);
-        var polygonOnMap = getBoundingBoxCenter2(map.select(id));
-        var tip = d.map + '-tooltip';
+    charts2.forEach(function(d) {
+        var map2 = d3.select(d.map2);
+        var polygonOnMap2 = getBoundingBoxCenter2(map2.select(id2));
+        var tip2 = d.map2 + '-tooltip';
 
-        var offsetY = d3.select('#myMap2').node().getBoundingClientRect().y
-        var offsetX = d3.select('#myMap2').node().getBoundingClientRect().x
+        var offsetY2 = d3.select('#myMap2').node().getBoundingClientRect().y
+        var offsetX2 = d3.select('#myMap2').node().getBoundingClientRect().x
 
-        d3.select(tip)
-        .style("top", (polygonOnMap[1] + offsetY + window.pageYOffset - 40) + "px" )
-        .style("left", (polygonOnMap[0] + offsetX + window.pageXOffset + 30) + "px");
+        d3.select(tip2)
+        .style("top", (polygonOnMap2[1] + offsetY2 + window.pageYOffset - 40) + "px" )
+        .style("left", (polygonOnMap2[0] + offsetX2 + window.pageXOffset + 30) + "px");
     });
 }
 
 // Resets the polygon after mouseout
-function mouseOut2(polygon) {
+function mouseOut2(polygon2) {
 
-    var id = polygon.properties[idAttribute],
-    name = polygon.properties[nameAttribute];
+    var id2 = polygon2.properties[idAttribute2],
+    name2 = polygon2.properties[nameAttribute2];
 
-    charts.forEach(function(d) {
+    charts2.forEach(function(d) {
 
-        var map = d3.select(d.map);
-        var tip = d.map + '-tooltip';
+        var map2 = d3.select(d.map2);
+        var tip2 = d.map2 + '-tooltip';
 
-        map.select(('.polygon'+id))
+        map2.select(('.polygon'+id2))
         .style('stroke', "#dadada")
         .style('opacity', '0.85');
         // map tooltip
-        d3.select(tip)
+        d3.select(tip2)
         .style('display', "none");
     });
 }

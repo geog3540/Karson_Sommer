@@ -60,12 +60,54 @@
 			<hr />
 			<div class="row">
 				<!--<div class="col-sm-4">-->
-					<p>Data from <a href="https://data.iowadot.gov/datasets/road-network-2">Iowa Department of Transportation Road Access Management System (RAMS)</a>, maps by Karson Sommer.</p>
-					<p>The roads first have county information joined in QGIS and the 4 name fields reduced to 1 name field. Then, the summary statistics are extracted from road network using SQL queries in Azure Databricks. <a href="./aGeography.html">(Query)</a> A related analysis instead focusing on crash statistics can be found here: <a href="./files/road_safety_analysis.pdf">Presentation</a></p>
-					<p>These maps display the proportion of roads in Iowa broken down by county. Change the suffix to look for a specific type of road. Selecting length looks at the percent of total miles in each county with the specified suffix. Selecting vehicle miles looks at the percent of total miles driven by the specified suffix. Disable the load screen to more easily toggle between length and vehicle miles.</p>
-					<p>Special suffixes include NULL, MALFORMED, and OTHER. NULL is any road which did not have a name in the dataset. MALFORMED are any roads which are missing a suffix. OTHER are any roads with a suffix other than the specified suffixes</p>
+				<h2>Summary</h2>
+				<p>Consider what street you live on? Maybe it is 1st Street. Maybe it is Elm Court. Maybe it is Interstate 80. What is the actual distribution of road suffixes?</p>
+				<p>We focus our analysis on the state of Iowa. Data is taken from the <a href="https://data.iowadot.gov/datasets/road-network-2">Iowa Department of
+					Transportation Road Access Management System (RAMS)</a>.</p>
+				<p>This dataset is extracted in the form of a shapefile and has 309,000 entries as well as 109 attributes.
+					For the analyses, we are only interested in the road name, so we discard all but 5 columns. 4 of the columns represent the names of the road. A municipal name,
+					a secondary name, a county name, and a state name. This was reduced to a single name per county by taking the lowest priority name. So if a road has both
+					a municipal name but is also a state signed route, we will only consider the municipal name. The other 1 column is the Average Annual Daily Traffic.</p>
+				<p>Using QGIS, the length for each road segment is appended to each entry. Additionally, the road segments are joined against each county in Iowa to retain the FIPS code and name.
+					Then, the data is imported into Azure Databricks. SQL queries are used to compute the total length. The actual query SQL query can be <a href="./aGeography.html">found here</a>. </p>
+				<p>In addition to the analysis presented here, another analysis was conducted. This focused primarly on the safety of roads in Iowa based on their physical characteristics.
+					The presentation can be found <a href="./files/road_safety_analysis.pdf">Presentation</a></p>
+
+				<h2>Most Common Suffixes by County</h2>
+				<p>The first set of maps to consider is which road suffix is most common for each county?</p>
+				<p>These maps can highlight both the most common road suffix by percent of overall length and the percent of the total miles driven.
+					Most common by length represents of all roads, which is the most common. Most common by miles driven represents
+					what is the most common suffix that people actually see.
+					The overall length is computed as the sum of length for the suffix divided by the total length. The miles driven is computed by taking the
+					length multiplied by Average Annual Daily Travel. This computes miles driven for a road segment in a day, then it can be computed as a percent of total miles driven</p>
+				<p>Special suffixes include NULL, MALFORMED, and OTHER. NULL is any road which did not have a name in the dataset. MALFORMED are any roads which are missing a suffix. OTHER are any roads with a suffix other than the specified suffixes</p>
 				<!--</div>-->
 			</div>
+			<div class="row">
+				<div class='col-sm-8 mapButtons'>
+				<span class="pull-right">
+					&nbsp
+					<span title="Whether we want to look at length or vehicle miles"><b>Classification:  </b></span>
+					<span title="Proportion of total road length"><button id='buttonLength2' class="btn btn-sm active" aria-pressed="true">Length</button></span>
+					<span title="Proportion of total miles driven"><button id='buttonVehicleMiles2' class="btn btn-sm">Vehicle Miles</button></span>
+					<span title="Show description when switching classification"><b>Load Screen:</b><input type="checkbox" checked id="myCheck2"></span>
+				</span>
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div id="myMap2"></div>
+			</div>
+
+			<div class="row">
+				<h2>Distribution of Road Suffixes</h2>
+				<p>The second analyses focuses on the distribution of a particular road suffix. For instance, where would
+				you be most likely to find roads with court in the name?</p>
+				<p>So, rather than examining which is the most common suffix, we examine the overall percent of that suffix in each county.
+				This map allows you to select between any suffix which has over 10 miles of length across in Iowa. Again, the option is available to
+				consider either the breakdown by length or by miles driven.</p>
+			</div>
+
 			<div class="row">
 				<div class='col-sm-8 mapButtons'>
 					<span class="pull-right">
@@ -110,15 +152,7 @@
 			</div>
 
 
-<!--
-			<div class="row">
-				<span class="pull-right"><img src="./files/summary_stats-1.png" width="500" alt="Most Common Suffixes By Length"></span>
-				<span class="pull-left"><img src="./files/summary_stats-2.png" width="500" alt="Most Common Suffixes By Miles Drive"></span>
-			</div>
--->
-			<div class="row">
-				<div id="myMap2"></div>
-			</div>
+
 
 		</div>
 	</div>
@@ -130,7 +164,7 @@
 </div>
 
 </body>
-<!--<script src="./myScript"></script>-->
+<script src="./myScript"></script>
 <script src="./myScript2"></script>
 
 </html>

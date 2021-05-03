@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23d04ac7-5285-4abc-a6b4-80968d808ec6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myScript" beforeDir="false" afterPath="$PROJECT_DIR$/myScript" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myScript2" beforeDir="false" afterPath="$PROJECT_DIR$/myScript2" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,10 +18,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myScript">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="266" column="30" selection-start-line="266" selection-end-line="267" />
+            <state relative-caret-position="290">
+              <caret line="239" column="68" selection-start-line="239" selection-start-column="62" selection-end-line="239" selection-end-column="68" />
               <folding>
-                <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#16183#0" />
@@ -28,10 +29,8 @@
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#16494#0" />
-                <element signature="e#0#16903#0" />
                 <element signature="e#0#16464#0" />
                 <element signature="e#0#18600#0" />
-                <element signature="e#0#17974#0" />
                 <element signature="e#0#17974#0" />
                 <element signature="e#0#17974#0" />
                 <element signature="e#0#17974#0" />
@@ -43,25 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myScript2">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="70" column="47" lean-forward="true" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#16771#0" />
-                <element signature="e#0#16771#0" />
-                <element signature="e#0#16771#0" />
-                <element signature="e#0#16771#0" />
-                <element signature="e#0#16771#0" />
-                <element signature="e#0#16771#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/RoadSummary.geojson">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="5" column="2001" selection-start-line="5" selection-start-column="2001" selection-end-line="5" selection-end-column="2001" />
+            <state relative-caret-position="596">
+              <caret line="101" column="11" lean-forward="true" selection-start-line="101" selection-start-column="11" selection-end-line="101" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -69,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="116" column="12" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="12" />
+            <state relative-caret-position="481">
+              <caret line="105" column="125" lean-forward="true" selection-start-line="105" selection-start-column="125" selection-end-line="105" selection-end-column="125" />
             </state>
           </provider>
         </entry>
@@ -86,16 +68,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>att1</find>
-      <find>charts[0]</find>
-      <find>charts</find>
-      <find>histogram</find>
       <find>classdropdown</find>
       <find>map</find>
       <find>hist_scale</find>
       <find>#mymap</find>
       <find>activebutton</find>
-      <find>buttonlength</find>
       <find>remove</find>
       <find>mymap</find>
       <find>&quot;id&quot;</find>
@@ -112,9 +89,14 @@
       <find>holdlegend</find>
       <find>bre</find>
       <find>current_scale</find>
-      <find>button</find>
       <find>vehiclemiles</find>
       <find>updatehisto</find>
+      <find>mouseover</find>
+      <find>projection</find>
+      <find>panel</find>
+      <find>mycheck</find>
+      <find>buttonlength</find>
+      <find>button</find>
       <find>legend</find>
     </findStrings>
   </component>
@@ -134,8 +116,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="425" />
-    <option name="y" value="-8" />
+    <option name="x" value="1664" />
+    <option name="y" value="-326" />
     <option name="width" value="1080" />
     <option name="height" value="515" />
   </component>
@@ -167,7 +149,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1620068333717" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1620073068163" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../smallmultiples" />
   </component>
   <component name="RunDashboard">
@@ -196,7 +178,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="1358" y="-326" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
@@ -204,7 +186,7 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14145234" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09968017" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
@@ -222,7 +204,7 @@
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.09531014" />
+      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.06716418" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
@@ -276,32 +258,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/RoadSummary.geojson">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="221">
           <caret line="5" column="2001" selection-start-line="5" selection-start-column="2001" selection-end-line="5" selection-end-column="2001" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myScript2">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="70" column="47" lean-forward="true" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#16771#0" />
-            <element signature="e#0#16771#0" />
-            <element signature="e#0#16771#0" />
-            <element signature="e#0#16771#0" />
-            <element signature="e#0#16771#0" />
-            <element signature="e#0#16771#0" />
-          </folding>
+        <state relative-caret-position="596">
+          <caret line="101" column="11" lean-forward="true" selection-start-line="101" selection-start-column="11" selection-end-line="101" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myScript">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="266" column="30" selection-start-line="266" selection-end-line="267" />
+        <state relative-caret-position="290">
+          <caret line="239" column="68" selection-start-line="239" selection-start-column="62" selection-end-line="239" selection-end-column="68" />
           <folding>
-            <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
             <element signature="e#0#16183#0" />
@@ -310,10 +283,8 @@
             <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
             <element signature="e#0#16494#0" />
-            <element signature="e#0#16903#0" />
             <element signature="e#0#16464#0" />
             <element signature="e#0#18600#0" />
-            <element signature="e#0#17974#0" />
             <element signature="e#0#17974#0" />
             <element signature="e#0#17974#0" />
             <element signature="e#0#17974#0" />
@@ -323,8 +294,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="116" column="12" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="12" />
+        <state relative-caret-position="481">
+          <caret line="105" column="125" lean-forward="true" selection-start-line="105" selection-start-column="125" selection-end-line="105" selection-end-column="125" />
         </state>
       </provider>
     </entry>

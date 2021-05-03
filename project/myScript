@@ -251,7 +251,7 @@ function updateMap(polygons) {
             .enter().append('g');
             map.append('path')
             .attr("class", function(e) { return classPolygon(e, d.map); })
-            .on('mouseover', function(e) { return mouseOver2(e, dependent); })
+            .on('mouseover', function(e) { return mouseOver(e, dependent); })
             .on('mouseout', mouseOut)
             .on('mousemove', mousemoveFunc)
             .attr("d", proj)
@@ -317,7 +317,7 @@ function getBoundingBoxCenter (selection) {
     return [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
 }
 
-function mouseOver2(polygon, attr) {
+function mouseOver(polygon, attr) {
     /* Mouse over routine
     Highlight the polygon on all maps, adjust the tooltip */
     //enter the id of the polygon
