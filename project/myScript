@@ -26,26 +26,9 @@ var att1 = d3.select('#classDropdown').node().value;
 var att1alias = d3.select('#classDropdown').node().value;
 var att1format = '.2%';
 
-// enter below all variables that should be normalized. If you would like to multiple the variables
-// with a constant value enter them in multiplyBy array. If there is no need for multiplication,
-// simply enter 1 for each value in multiplyBy.
-//var attributesToBeNormalized = [att1, att4];
-//var multiplyBy = [10000, 100];
-//var divideBy = ['Population', 'Population'];
-// if your variables are not raw counts and they are already normalized, comment out above, and
-//uncomment below:
  var attributesToBeNormalized = [];
  var multiplyBy = [];
  var divideBy = [];
-
-//DO NOT CHANGE ANYTHING BELOW THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
-////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////
-// Global variables for the small multiples
-///////////////////////////////////////////
 
 //Get the selected name of the dropdown
 var suffix = d3.select('#classDropdown').node().value;
@@ -65,12 +48,11 @@ var histHeight = (chartHeight * .25);
 
 // Save scales as global scale variables
 //TODO: fix the classifications
-var linear_scale = d3.scaleLinear().range(color_scale),
-quantile_scale = d3.scaleQuantile().range(color_scale),
-jenks_scale = d3.scaleThreshold().range(color_scale),
-equal_interval_scale = d3.scaleQuantize().range(color_scale),	// interval
-hist_scale = d3.scaleLinear().range([0, width]), // hist X
-hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
+var linear_scale = d3.scaleLinear().range(color_scale);
+var jenks_scale = d3.scaleThreshold().range(color_scale);
+var equal_interval_scale = d3.scaleQuantize().range(color_scale);	// interval
+var hist_scale = d3.scaleLinear().range([0, width]); // hist X
+var hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
 
 
 current_scale = jenks_scale;	// Save scales as global scale variable
@@ -81,8 +63,8 @@ var charts = [
 ];
 
 var buttons = [
-    {'btn': '#buttonLength'},//, 'scale': quantile_scale},
-    {'btn': '#buttonVehicleMiles'}//, 'scale': equal_interval_scale}
+    {'btn': '#buttonLength'},
+    {'btn': '#buttonVehicleMiles'}
 ];
 activeButton = 'buttonLength';
 
@@ -115,10 +97,12 @@ var holdLegend = d3.legendColor()
 .useClass(false)
 .scale(current_scale);
 
+var polygons;
+
     //this is where you read the json polygon data
 d3.json(polygonJSONFile).then(function(data) {
         // set up the projection
-        var polygons = data;
+        polygons = data;
         var proj = d3.geoPath().pointRadius(2);
         // TODO: change the projection details here below - including specific parameters such as rotation, extent, etc.
         proj.projection(projection.fitSize([width, height], polygons));
@@ -180,59 +164,12 @@ d3.json(polygonJSONFile).then(function(data) {
             updateHistogram(polygons);
         });
 
+        updateHistogram(polygons)
 
         // For each input attribute make a map and a histogram
         charts.forEach(function(d) {
             // Set scales + variable for each map
             var dependent = d.var;
-
-            var hist_var = polygons.features.filter(function(e) { return +e.properties[dependent]; })
-            .map(function(e) { return +e.properties[dependent]; });
-            setScales(hist_var);
-
-            // set histogram
-            var currentBins = bins.domain(linear_scale.domain())(hist_var);
-            var y = hist_y.domain([0, d3.max(currentBins, function(e) { return e.length; })]);
-
-            // Draw histogram
-            var hist = d3.select(d.hist).append("svg")
-            .attr("id","histogramSVG")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", histHeight + margin.top + margin.bottom + 30)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            var bar = hist.selectAll('.bar')
-            .data(currentBins)
-            .enter().append('g')
-            .attr("transform", function(e) {
-                return "translate(" + hist_scale(e.x0) + "," + y(e.length) + ")";
-            });
-
-            // hist bars
-            bar.append("rect")
-            .attr('class', 'bar')
-            .attr("x", 1)
-            .attr("width", function(e) { return hist_scale(e.x1) - hist_scale(e.x0); })
-            .attr("height", function(e) { return histHeight - y(e.length); })
-            .style('fill', function(e) { return current_scale(fillHist(e, d.var)); });
-
-            // Hist axes
-            hist.append("g")
-            .attr("class", "axis axis--x")
-            .attr("transform", "translate(0," + histHeight + ")")
-            .call(d3.axisBottom(hist_scale)
-            .ticks(6)
-            .tickFormat(function(e) {
-                    return e*100 + '%';
-            }));
-
-            // hist axis label
-            hist.append('text')
-            .attr('transform', 'translate(' + (width/2) + ',' +
-            (histHeight + 35) + ')')
-            .style('font-family', 'sans-serif')
-            .style('text-anchor', 'middle')
-            .text(d.ax);
 
             // tooltip for maps
             var tooltipD3 = d3.select(d.map)
@@ -286,7 +223,7 @@ function updateHistogram(polygons) {
             var y = hist_y.domain([0, d3.max(currentBins, function(e) { return e.length; })]);
 
             d3.select("#histogramSVG").remove();
-            //d3.select(hist).remove();
+
             // Draw histogram
             var hist = d3.select(d.hist).append("svg")
             .attr("id","histogramSVG")
@@ -329,9 +266,26 @@ function updateHistogram(polygons) {
     });
 }
 
+window.addEventListener("resize", displayWindowSize);
+function displayWindowSize() {
+    chartWidth = d3.select('#myMap').node().getBoundingClientRect().width;
+    chartHeight = chartWidth * widthheightRatio;
+    margin = {top: 10, right: 20, bottom: 10, left:20};
+    width = chartWidth - margin.right - margin.left;
+    console.log('w' + width)
+    height = chartHeight - margin.top - margin.bottom;
+    console.log('h' + height)
+    histHeight = (chartHeight * .25);
+
+    hist_scale = d3.scaleLinear().range([0, width]); // hist X
+    hist_y = d3.scaleLinear().range([histHeight, 0]);	// hist Y
+    bins = d3.histogram()
+    .domain(hist_scale.domain())
+    .thresholds(10);
+    updateHistogram(polygons)
+}
+
 function recalculateAttribute(attribute, multiplyby, divideby) {
-    // Function to catch errors when normalizing an attribute
-    // console.log(p, n);
     if (!+divideby) {
         return null;
     } else {
@@ -373,7 +327,6 @@ function mouseOver2(polygon, attr) {
         .style('stroke', 'black')
         .style('opacity', '1');
 
-console.log("asdf")
         // map tooltip
         d3.select(tip)
         .style('display', null)
@@ -390,13 +343,9 @@ function mousemoveFunc(polygon) {
     charts.forEach(function(d) {
         var map = d3.select(d.map),
         polygonOnMap = getBoundingBoxCenter(map.select(id));
-
-        //console.log(polygonOnMap)
-        console.log("cw " + chartWidth)
-        console.log("w " + width)
         var tip = d.map + '-tooltip';
         d3.select(tip)
-        .style("top", (polygonOnMap[1] + chartHeight) + "px" )
+        .style("top", (polygonOnMap[1] ) + "px" )
         .style("left", (polygonOnMap[0] ) + "px");
     });
 }
@@ -431,9 +380,9 @@ function setScales(data) {
     //current_scale.range(color_scale);
     var max = d3.max(data), min = d3.min(data);
 
-    quantile_scale
+    /*quantile_scale
     .domain(data)
-    .range(color_scale);
+    .range(color_scale);*/
 
     equal_interval_scale
     .domain([min, max])
