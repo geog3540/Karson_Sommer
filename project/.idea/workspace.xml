@@ -15,20 +15,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myScript">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
+            <state relative-caret-position="254">
+              <caret line="215" column="29" lean-forward="true" selection-start-line="215" selection-start-column="29" selection-end-line="215" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
-                <element signature="e#0#18600#0" />
-                <element signature="e#0#16183#0" />
-                <element signature="e#0#18600#0" />
-                <element signature="e#0#18600#0" />
-                <element signature="e#0#18600#0" />
                 <element signature="e#0#17729#0" />
+                <element signature="e#0#16331#0" />
                 <element signature="e#0#18600#0" />
                 <element signature="e#0#18600#0" />
+                <element signature="e#0#16494#0" />
+                <element signature="e#0#16464#0" />
                 <element signature="e#0#17974#0" />
                 <element signature="e#0#17974#0" />
                 <element signature="e#0#17974#0" />
@@ -41,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="103" column="24" lean-forward="true" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+            <state relative-caret-position="478">
+              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
         </entry>
@@ -58,12 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>buttonlength</find>
-      <find>activebutton</find>
-      <find>chase</find>
-      <find>suffix</find>
-      <find>mymap</find>
-      <find>widthh</find>
       <find>tests</find>
       <find>color</find>
       <find>f3f3</find>
@@ -81,13 +73,19 @@
       <find>linear_Scale</find>
       <find>quantile_scale</find>
       <find>updatehi</find>
-      <find>hist_scale</find>
       <find>tip</find>
       <find>polygononmap</find>
       <find>tooltip</find>
       <find>width</find>
       <find>getboundingboxcenter</find>
       <find>console.log</find>
+      <find>att1al</find>
+      <find>att1</find>
+      <find>charts[0]</find>
+      <find>charts</find>
+      <find>att1format</find>
+      <find>histogram</find>
+      <find>hist_scale</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,7 +131,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1620061121619" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1620062283226" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../smallmultiples" />
   </component>
   <component name="RunDashboard">
@@ -242,27 +240,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="103" column="24" lean-forward="true" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+        <state relative-caret-position="478">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/myScript">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="359" lean-forward="true" selection-start-line="359" selection-end-line="359" />
+        <state relative-caret-position="254">
+          <caret line="215" column="29" lean-forward="true" selection-start-line="215" selection-start-column="29" selection-end-line="215" selection-end-column="29" />
           <folding>
             <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
-            <element signature="e#0#18600#0" />
-            <element signature="e#0#16183#0" />
-            <element signature="e#0#18600#0" />
-            <element signature="e#0#18600#0" />
-            <element signature="e#0#18600#0" />
             <element signature="e#0#17729#0" />
+            <element signature="e#0#16331#0" />
             <element signature="e#0#18600#0" />
             <element signature="e#0#18600#0" />
+            <element signature="e#0#16494#0" />
+            <element signature="e#0#16464#0" />
             <element signature="e#0#17974#0" />
             <element signature="e#0#17974#0" />
             <element signature="e#0#17974#0" />

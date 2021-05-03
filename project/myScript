@@ -137,7 +137,7 @@ d3.json(polygonJSONFile).then(function(data) {
                     charts[0].ax = d3.select('#classDropdown').node().value;
                 } else if(activeButton == 'buttonVehicleMiles') {
                     charts[0].var = 'vm' + d3.select('#classDropdown').node().value;
-                    charts[0].ax = 'vm' + d3.select('#classDropdown').node().value;
+                    charts[0].ax = d3.select('#classDropdown').node().value;
                 } else {
                     err.message;
                 }
@@ -153,7 +153,7 @@ d3.json(polygonJSONFile).then(function(data) {
                 charts[0].ax = d3.select('#classDropdown').node().value;
             } else if(activeButton == 'buttonVehicleMiles') {
                 charts[0].var = 'vm' + d3.select('#classDropdown').node().value;
-                charts[0].ax = 'vm' + d3.select('#classDropdown').node().value;
+                charts[0].ax = d3.select('#classDropdown').node().value;
             } else {
                 err.message;
             }
@@ -212,7 +212,8 @@ function updateHistogram(polygons) {
             .call(d3.axisBottom(hist_scale)
             .ticks(6)
             .tickFormat(function(e) {
-                    return e*100 + '%';
+                    //console.log(e*100)
+                    return Math.trunc(e*10000)/100 + '%';
             }));
 
             // hist axis label
@@ -338,10 +339,17 @@ function mouseOver2(polygon, attr) {
         .style('opacity', '1');
 
         // map tooltip
-        d3.select(tip)
-        .style('display', null)
-        .html("<p><b>" + name + " " + nameAttribute + "</b><br/>" + d.var +
-        ": " + d3.format(d.form)(polygon.properties[d.var]) + "</p>");
+        if(activeButton == 'buttonLength') {
+            d3.select(tip)
+            .style('display', null)
+            .html("<p><b>" + name + " " + nameAttribute + "</b><br/>" + d.var +
+            ": " + d3.format(d.form)(polygon.properties[d.var]) + "</p>");
+        } else if(activeButton == 'buttonVehicleMiles') {
+            d3.select(tip)
+            .style('display', null)
+            .html("<p><b>" + name + " " + nameAttribute + "</b><br/>" + d.ax +
+            ": " + d3.format(d.form)(polygon.properties[d.var]) + "</p>");
+        }
     });
 }
 
