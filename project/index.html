@@ -56,24 +56,29 @@
 		<div class="content">
 			<div class="row">
 					<h1>Iowa Roads</h1>
+					<h2>Karson Sommer, GEOG:5540</h2>
 			</div>
 			<hr />
 			<div class="row">
 				<!--<div class="col-sm-4">-->
 				<h2>Summary</h2>
-				<p>Consider what street you live on? Maybe it is 1st Street. Maybe it is Elm Court. Maybe it is Interstate 80. What is the actual distribution of road suffixes?</p>
-				<p>We focus our analysis on the state of Iowa. Data is taken from the <a href="https://data.iowadot.gov/datasets/road-network-2" style="font-weight:bold;">Iowa Department of
+				<p>Consider what street you live on? Maybe it is 1st Street. Maybe it is Elm Court. Maybe it is Interstate 80. Is it more common for someone to live on a Street or a Court? What is the actual distribution of road suffixes?</p>
+				<p>We will focus our analysis on the state of Iowa. Data is taken from the <a href="https://data.iowadot.gov/datasets/road-network-2" style="font-weight:bold;">Iowa Department of
 					Transportation Road Access Management System (RAMS)</a>.</p>
 				<p>This dataset is extracted in the form of a shapefile and has 309,000 entries as well as 109 attributes.
 					For the analyses, we are only interested in the road name, so we discard all but 5 columns. 4 of the columns represent the names of the road. A municipal name,
 					a secondary name, a county name, and a state name. This was reduced to a single name per county by taking the lowest priority name. So if a road has both
-					a municipal name but is also a state signed route, we will only consider the municipal name. The other 1 column is the Average Annual Daily Traffic.</p>
-				<p>Using QGIS, the length for each road segment is appended to each entry. Additionally, the road segments are joined against each county in Iowa to retain the FIPS code and name.
-					Then, the data is imported into Azure Databricks. SQL queries are used to compute the total length. <a href="./aGeography.html" style="font-weight:bold;">The SQL query</a> can be viewed in an interactive document.</p>
+					a municipal name but is also a state signed route, we will only consider the municipal name. The other 1 column retained is the Average Annual Daily Traffic. This variable
+					refers to the average amount of vehicles that travel a road per day, averaged by over an entire year.</p>
+				<p>Using QGIS, the length for each road segment is appended to each entry. This attribute will be measured in miles.
+					Additionally, the road segments are joined against each county in Iowa to retain the FIPS code and name.
+					Then, the data is imported into Azure Databricks. SQL queries are used to compute the total length per road segment for each county.
+					<a href="./aGeography.html" style="font-weight:bold;">The SQL query</a> can be viewed in an interactive document.</p>
 				<p>In addition to the analysis presented here, another analysis was conducted. This focused primarly on the safety of roads in Iowa based on their physical characteristics.
 					The presentation is titled, <a href="./files/road_safety_analysis.pdf" style="font-weight:bold;">Iowa Road Safety</a>,
 					and was put together for the class Big Data Management & Analytics.</p>
-
+				<br>
+				<br>
 				<h2>Most Common Suffixes by County</h2>
 				<p>The first set of maps to consider is which road suffix is most common for each county?</p>
 				<p>These maps can highlight both the most common road suffix by percent of overall length and the percent of the total miles driven.
@@ -81,7 +86,10 @@
 					what is the most common suffix that people actually see.
 					The overall length is computed as the sum of length for the suffix divided by the total length. The miles driven is computed by taking the
 					length multiplied by Average Annual Daily Travel. This computes miles driven for a road segment in a day, then it can be computed as a percent of total miles driven</p>
-				<p>Special suffixes include NULL, MALFORMED, and OTHER. NULL is any road which did not have a name in the dataset. MALFORMED are any roads which are missing a suffix. OTHER are any roads with a suffix other than the specified suffixes</p>
+				<p>Special suffixes include NULL, MALFORMED, and OTHER. NULL is any road which did not have a name in the dataset. NULLs are usually
+					entry errors and not actually roads without names. MALFORMED are any roads which are missing a suffix. Agains, MALFORMED names
+					are typically entry errors where someone left off the suffix. OTHER are any roads with a suffix other than the specified suffixes. OTHER
+					could be uncommon suffixes such as Strasze or Trace. Alternatively, OTHER encapsulates misspelled suffixes like St rather than Street.</p>
 				<!--</div>-->
 			</div>
 			<div class="row">
@@ -102,21 +110,28 @@
 			<div class="row">
 				<p>It can be observed from the break down by length that most counties in Iowa are dominated by streets. This is actually somewhat misleading. In reality,
 				most of the counties with streets use a grid system, where streets are half the grid and avenues are the other half of the grid. Since streets are also used
-				in urban areas, it means that they have slightly longer length in all of those counties.</p>
+				in urban areas, it means that they have slightly longer length than avenues those counties.</p>
 				<p>Northeastern Iowa is dominated by roads. Northeastern Iowa is the driftless region, an unglaciated region that is very hilly. The road network there is
-				much different than the rest of Iowa and that fact is even reflected in the road names.</p>
+				much different than the rest of Iowa. The roads are not on a grid system and are much steeper than elsewhere. The roads are also
+					typically ashpalt rather than gravel. Overall, those road systems are more like Wisconsin than Iowa.
+					This fact is even reflected in the different road names.</p>
 				<p>Analyzing by vehicle miles, most of the state is led by NULL values. These values likely correspond to various highway systems.
-				It may be that they are not propertly encoded in the original dataset.</p>
-				<p>Northeast Iowa is very rural and doesn't have a major highway passing through the region. Since residents are forced
-				to use surface streets, it means the amount of miles travelled on those streets are higher.</p>
+				It may be that they are not propertly encoded in the original dataset. NULL probably represents Interstates
+				as well as US highways.</p>
+				<p>Northwest Iowa is rural and doesn't have a major highway passing through the region. Since residents are forced
+				to use surface streets, it means the amount of miles travelled on those streets are higher. This leads to the most common
+				roads by miles driven being street, avenue, and way.</p>
 			</div>
+			<br>
+			<br>
 			<div class="row">
 				<h2>Distribution of Road Suffixes</h2>
 				<p>The second analyses focuses on the distribution of a particular road suffix. For instance, where would
 				you be most likely to find roads with court in the name?</p>
 				<p>So, rather than examining which is the most common suffix, we examine the overall percent of that suffix in each county.
-				This map allows you to select between any suffix which has over 10 miles of length across in Iowa. Again, the option is available to
-				consider either the breakdown by length or by miles driven.</p>
+				This map allows you to select between any suffix which has over 10 miles of length across in Iowa. There are
+					21 suffixes to choose from including NULL, MALFORMED, and OTHER. The option is available to
+				select either the breakdown by length or by miles driven.</p>
 			</div>
 
 			<div class="row">
@@ -164,19 +179,33 @@
 			<div class="row">
 				<p>These maps show a lot of information. First, examine the road suffixes which are presented in the first map
 				as being the most common. Streets are everywhere except for the northeast region dominated by roads. Avenues are
-				pretty much every, except Cass County has only 0.49% by length! Examining MALFORMED values, we see that Chickasaw County is 77% bad. This is due
+				pretty much everywhere, except Cass County has only 0.49% by length! Examining MALFORMED values, we see that Chickasaw County is 77% bad. This is due
 				to the suffixes being omitted in the dataset for their county. The roads have suffixes in real life, so this is a data error.</p>
-				<p>Most of the suffixes have almost no prescence across the state. Since much of Iowa is rural and uses the grid system,
+				<p>Most of the suffixes have almost no presence across the state. Since much of Iowa is rural and uses the grid system,
 				this means that these counties are dominated by avenues, streets, highways, and roads. Other road suffixes are usually
 				associated with suburban development. And many developers will pick a subset of road suffixes to use. This leads
-				to some subdivisions causing certain counties to stand out.</p>
+				to some subdivisions causing certain counties to stand out. For example, loop is only found in meaningful numbers
+				in 3 counties.</p>
 				<p>By miles driven, the proportion for all of the suburban suffixes decreases. This makes sense because people
 				only use suburban roads to get to residences. Similarly, avenues and streets decrease in proportion. While
 				these roads are found everywhere, they are usually gravel roads that only service farms. So they don't
-				see that much traffic.</p>
+				see that much traffic. NULL values again dominate because highways have much more traffic than surface streets.</p>
 
 			</div>
-
+			<br>
+			<br>
+			<div class="row">
+				<h2>Conclusion</h2>
+				<p>These maps clearly show that roads are not uniformly distributed. There may be a significantly higher chance
+				to find a particular road suffix in one area than another area. While streets and avenues may be the standard
+				in one county, someone from another county might think it is bizarre since their home county only has roads.</p>
+				<p>This dataset is supposed to be authoritative for the Iowa Department of Transportation, but the maps
+				show that there are clear issues. Chickasaw County is missing road suffixes for 77% of their roads. This is
+				a clear issue if the road dataset is being used by first responders, deliver drivers, or taxi companies since
+				it may cause critical delays in reaching a person's home.</p>
+				<p>The maps also show highways have their names omitted when viewing the NULL names. This is also an issue
+				since any 3rd party using the dataset will have to manually encode the highway names onto the roads.</p>
+			</div>
 
 
 
